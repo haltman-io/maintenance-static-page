@@ -1,0 +1,642 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+<title>500: Internal server error</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09090b">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    color-scheme: dark;
+    --bg: #09090b;
+    --bg-raised: #101014;
+    --panel: #15151a;
+    --panel-soft: #1a1a20;
+    --text: #f1f1f3;
+    --text-soft: #b9b9c2;
+    --text-dim: #83838f;
+    --line: rgba(241, 241, 243, 0.13);
+    --line-strong: rgba(241, 241, 243, 0.24);
+    --accent: #ef233c;
+    --accent-hot: #ff3d54;
+    --accent-dim: rgba(239, 35, 60, 0.16);
+    --accent-line: rgba(239, 35, 60, 0.62);
+    --ok: #d6d6dd;
+    --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-move: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background:
+        linear-gradient(135deg, rgba(239, 35, 60, 0.11), transparent 34%),
+        radial-gradient(circle at 72% 14%, rgba(255, 255, 255, 0.045), transparent 28%),
+        var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--accent-hot);
+    text-decoration: none;
+    transition: color 150ms ease, border-color 150ms ease;
+}
+
+a:hover {
+    color: #ff6a7a;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+button {
+    font: inherit;
+}
+
+.wrap {
+    width: min(960px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.error-page {
+    animation: page-in 520ms var(--ease-out) both;
+}
+
+.hero {
+    padding: 46px 0 32px;
+}
+
+.hero h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(38px, 6vw, 66px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: 0;
+}
+
+.hero-title {
+    display: inline;
+}
+
+.code-label {
+    display: inline-block;
+    margin-left: 12px;
+    transform: translateY(-0.55em);
+    padding: 3px 9px;
+    border: 1px solid var(--accent-line);
+    border-radius: 999px;
+    background: var(--accent-dim);
+    color: #ff94a0;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.hero p {
+    margin: 12px 0 0;
+    color: var(--text-soft);
+}
+
+.stamp {
+    color: var(--text-dim);
+}
+
+.status-band {
+    position: relative;
+    margin: 0;
+    border-block: 1px solid var(--line);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 50%),
+        var(--panel);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.status-band::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--accent), transparent);
+    opacity: 0.8;
+    transform: translateY(-100%);
+    animation: vertical-scan 5.8s var(--ease-move) infinite 700ms;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.node {
+    position: relative;
+    min-width: 0;
+    padding: 58px 24px 54px;
+    text-align: center;
+    animation: node-in 520ms var(--ease-out) both;
+}
+
+.node:nth-child(2) {
+    animation-delay: 80ms;
+}
+
+.node:nth-child(3) {
+    animation-delay: 160ms;
+}
+
+.node + .node {
+    border-left: 1px solid var(--line);
+}
+
+.node-source {
+    background:
+        linear-gradient(180deg, rgba(239, 35, 60, 0.14), transparent 62%),
+        rgba(255, 255, 255, 0.018);
+}
+
+.node-source::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -17px;
+    width: 34px;
+    height: 34px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    transform: translateX(-50%) rotate(45deg);
+    box-shadow: 8px 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.icon-wrap {
+    position: relative;
+    width: 124px;
+    height: 92px;
+    margin: 0 auto 24px;
+}
+
+.hud-icon {
+    width: 124px;
+    height: 92px;
+    color: var(--accent);
+    opacity: 0.78;
+    filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.28));
+}
+
+.status-mark {
+    position: absolute;
+    right: 14px;
+    bottom: -9px;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    background: #101014;
+    color: var(--ok);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.42);
+}
+
+.status-mark svg {
+    width: 24px;
+    height: 24px;
+}
+
+.status-mark.error {
+    border-color: var(--accent-line);
+    background: var(--accent);
+    color: #170306;
+    animation: alert-pulse 2.4s var(--ease-out) infinite;
+}
+
+.eyebrow {
+    display: block;
+    color: var(--text-soft);
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.node h3 {
+    margin: 14px 0 0;
+    color: var(--text-dim);
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.25;
+}
+
+.state {
+    display: block;
+    margin-top: 2px;
+    color: var(--ok);
+    font-size: 24px;
+    line-height: 1.3;
+}
+
+.state.error {
+    color: var(--accent-hot);
+}
+
+.explain {
+    padding: 34px 0 34px;
+}
+
+.explain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+}
+
+.explain h2 {
+    margin: 0 0 14px;
+    color: var(--text);
+    font-size: clamp(26px, 3vw, 32px);
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.explain p {
+    margin: 0;
+    color: var(--text-soft);
+}
+
+.footer {
+    padding: 28px 0 48px;
+    border-top: 1px solid var(--line);
+    color: var(--text-dim);
+    font-size: 13px;
+    text-align: center;
+}
+
+.footer strong {
+    color: var(--text-soft);
+    font-weight: 700;
+}
+
+.footer-separator {
+    margin: 0 6px;
+}
+
+.ip-reveal-btn {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: none;
+    color: var(--accent-hot);
+    cursor: pointer;
+    transition: color 150ms ease, transform 150ms ease;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .node {
+        transition: background-color 180ms ease, transform 180ms ease;
+    }
+
+    .node:hover {
+        background-color: rgba(255, 255, 255, 0.024);
+        transform: translateY(-1px);
+    }
+
+    .ip-reveal-btn:hover {
+        color: #ff6a7a;
+        transform: translateY(-1px);
+    }
+}
+
+@keyframes page-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes node-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes alert-pulse {
+    0%, 100% {
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.42), 0 0 0 rgba(239, 35, 60, 0);
+    }
+    42% {
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.42), 0 0 0 8px rgba(239, 35, 60, 0.13);
+    }
+}
+
+@keyframes vertical-scan {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    18% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+
+@media (max-width: 720px) {
+    .wrap {
+        width: min(100% - 36px, 960px);
+    }
+
+    .hero {
+        padding: 32px 0 24px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .code-label {
+        margin: 10px 0 0;
+        transform: none;
+    }
+
+    .status-grid,
+    .explain-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .node {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 10px 18px;
+        padding: 26px 0;
+        text-align: left;
+    }
+
+    .node + .node {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+    }
+
+    .node-source::after,
+    .icon-wrap {
+        display: none;
+    }
+
+    .node h3,
+    .state,
+    .eyebrow {
+        margin: 0;
+    }
+
+    .state {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
+        font-size: 18px;
+    }
+
+    .explain {
+        padding: 30px 0;
+    }
+
+    .explain-grid > div + div {
+        margin-top: 28px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+    }
+
+    .footer {
+        text-align: left;
+    }
+
+    .footer-item,
+    .footer-separator {
+        display: block;
+        margin: 0 0 4px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+    }
+}
+</style>
+</head>
+<body>
+<div class="error-page">
+    <header class="hero wrap">
+        <h1>
+            <span class="hero-title">MAINTENANCE</span>
+            <span class="code-label">999</span>
+        </h1>
+        <p>Visit <a href="https://haltman.io/join" target="_blank" rel="noopener noreferrer">haltman.io/join</a> for more information.</p>
+        <p class="stamp"><time id="browser-time" datetime="">Current browser time</time></p>
+    </header>
+
+    <section class="status-band" aria-label="Connection status">
+        <div class="wrap status-grid">
+            <div class="node">
+                <div class="icon-wrap" aria-hidden="true">
+                    <svg class="hud-icon" viewBox="0 0 124 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16H112V72H12V16Z" stroke="currentColor" stroke-width="6" stroke-linejoin="miter"/>
+                        <path d="M12 31H112" stroke="currentColor" stroke-width="6"/>
+                        <path d="M25 23H32" stroke="currentColor" stroke-width="6"/>
+                        <path d="M41 23H48" stroke="currentColor" stroke-width="6"/>
+                        <path d="M68 23H101" stroke="currentColor" stroke-width="6"/>
+                        <path d="M24 45H52M24 57H72M84 57H100" stroke="currentColor" stroke-width="4" opacity=".42"/>
+                    </svg>
+                    <span class="status-mark">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M5 12.5L10 17L19 6" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+                        </svg>
+                    </span>
+                </div>
+                <span class="eyebrow">You</span>
+                <h3>Browser</h3>
+                <span class="state">Working</span>
+            </div>
+
+            <div class="node node-source">
+                <div class="icon-wrap" aria-hidden="true">
+                    <svg class="hud-icon" viewBox="0 0 124 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 66H105" stroke="currentColor" stroke-width="6" stroke-linecap="square"/>
+                        <path d="M30 66V49L44 39H60L72 25H93L105 39V66" stroke="currentColor" stroke-width="6" stroke-linejoin="miter"/>
+                        <path d="M43 66V53H60L72 40H88L96 49V66" stroke="currentColor" stroke-width="4" opacity=".42"/>
+                        <path d="M20 26H36M14 38H29M89 15H111" stroke="currentColor" stroke-width="4" opacity=".58"/>
+                    </svg>
+                    <span class="status-mark error">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M7 7L17 17M17 7L7 17" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                        </svg>
+                    </span>
+                </div>
+                <span class="eyebrow">FIFTH CIRCLE OF HELL</span>
+                <h3>HALTMAN-IO</h3>
+                <span class="state error">ERROR</span>
+            </div>
+
+            <div class="node">
+                <div class="icon-wrap" aria-hidden="true">
+                    <svg class="hud-icon" viewBox="0 0 124 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 22H100L110 50V74H14V50L24 22Z" stroke="currentColor" stroke-width="6" stroke-linejoin="miter"/>
+                        <path d="M14 50H110" stroke="currentColor" stroke-width="6"/>
+                        <path d="M31 62H72" stroke="currentColor" stroke-width="4" opacity=".42"/>
+                        <path d="M88 62H99" stroke="currentColor" stroke-width="6"/>
+                        <path d="M34 33H90" stroke="currentColor" stroke-width="4" opacity=".42"/>
+                    </svg>
+                    <span class="status-mark">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M5 12.5L10 17L19 6" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+                        </svg>
+                    </span>
+                </div>
+                <span class="eyebrow">Website</span>
+                <h3>Host</h3>
+                <span class="state">Working</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="explain wrap">
+        <div class="explain-grid">
+            <div>
+                <h2>What happened?</h2>
+                <p>Haltman.IO&#39;s network is under maintenance.</p>
+            </div>
+            <div>
+                <h2>What can I do?</h2>
+                <p>How about WAITING? You anxious bitch</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer wrap">
+        <p>
+            <span class="footer-item">Ray ID: <strong>LoversOfGothicGirls</strong></span>
+            <span id="footer-ip-separator" class="footer-separator hidden">&bull;</span>
+            <span id="footer-item-ip" class="footer-item hidden">
+                Your IP:
+                <button type="button" id="footer-ip-reveal" class="ip-reveal-btn">Click to reveal</button>
+                <span class="hidden" id="footer-ip">we do not collect it</span>
+            </span>
+            <span class="footer-separator">&bull;</span>
+            <span class="footer-item">Performance &amp; security by <a rel="noopener noreferrer" href="https://haltman.io/" target="_blank">Haltman.IO</a></span>
+        </p>
+    </footer>
+</div>
+<script>
+(function () {
+    function pad(value) {
+        return String(value).padStart(2, "0");
+    }
+
+    function formatOffset(date) {
+        var offset = -date.getTimezoneOffset();
+        var sign = offset >= 0 ? "+" : "-";
+        var absoluteOffset = Math.abs(offset);
+        var hours = pad(Math.floor(absoluteOffset / 60));
+        var minutes = pad(absoluteOffset % 60);
+
+        return "GMT" + sign + hours + ":" + minutes;
+    }
+
+    function updateBrowserTime() {
+        var time = document.getElementById("browser-time");
+
+        if (!time) {
+            return;
+        }
+
+        var now = new Date();
+        var formatted =
+            now.getFullYear() + "-" +
+            pad(now.getMonth() + 1) + "-" +
+            pad(now.getDate()) + " " +
+            pad(now.getHours()) + ":" +
+            pad(now.getMinutes()) + ":" +
+            pad(now.getSeconds()) + " " +
+            formatOffset(now);
+
+        time.dateTime = now.toISOString();
+        time.textContent = formatted;
+    }
+
+    function initIpReveal() {
+        var item = document.getElementById("footer-item-ip");
+        var separator = document.getElementById("footer-ip-separator");
+        var button = document.getElementById("footer-ip-reveal");
+        var value = document.getElementById("footer-ip");
+
+        if (!item || !separator || !button || !value || !item.classList) {
+            return;
+        }
+
+        separator.classList.remove("hidden");
+        item.classList.remove("hidden");
+        button.addEventListener("click", function () {
+            button.classList.add("hidden");
+            value.classList.remove("hidden");
+        });
+    }
+
+    function init() {
+        initIpReveal();
+        updateBrowserTime();
+        window.setInterval(updateBrowserTime, 1000);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>
